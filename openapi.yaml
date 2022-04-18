@@ -22,11 +22,11 @@ tags:
 paths:
   /user/login:
     $ref: './components/endpoints/user/login.yaml'
-  /shop/login:
-    $ref: './components/endpoints/shop/login.yaml'
+  # /shop/login:
+    # $ref: './components/endpoints/shop/login.yaml'
 
-  /logout:
-    $ref: './components/endpoints/logout.yaml'
+  # /logout:
+    # $ref: './components/endpoints/logout.yaml'
 
 components:
   schemas:
@@ -91,10 +91,10 @@ components:
       $ref: './components/examples/token.yaml'
 
   securitySchemes:
-    BearerAuth:
-      description: "Authorization: Basic <clientID:clientSecret b64>"
-      type: http
-      scheme: basic
+    # BearerAuth:
+    #   description: "Authorization: Basic <clientID:clientSecret b64>"
+    #   type: http
+    #   scheme: basic
 
     BasicAuth:
       type: http
