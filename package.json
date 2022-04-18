@@ -1,0 +1,13 @@
+{
+  "name": "openapi",
+  "version": "1.0.0",
+  "main": "Dependencies related to the documentation",
+  "scripts": {
+    "linter": "lint-openapi -vps --ruleset .spectral.yaml openapi.yaml",
+    "builder": "redoc-cli build openapi.yaml -o index.html"
+  },
+  "dependencies": {
+    "ibm-openapi-validator": "^0.65.0",
+    "redoc-cli": "^0.13.10"
+  }
+}

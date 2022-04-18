@@ -1,0 +1,102 @@
+openapi: "3.1.0"
+info:
+  x-logo:
+    url: "https://avatars.githubusercontent.com/u/72045151?s=400&u=2da454a65a925719805331f9e3993bec4bc0b417&v=4"
+  title: Pizzi API - Authorization server
+  version: "pre-alpha"
+  description: >
+    This is the internal API authorization server documentation for the
+    PizziPayment.
+    You can find out more about Pizzi [here](https://www.pizzi-payment.fr).
+  contact:
+    email: contact@pizzi-payment.fr
+
+servers:
+  - description: localhost
+    url: http://localhost:5000
+
+tags:
+  - name: Auth
+    description: Everything about authentication.
+
+paths:
+  /user/login:
+    $ref: './components/endpoints/user/login.yaml'
+  /shop/login:
+    $ref: './components/endpoints/shop/login.yaml'
+
+  /logout:
+    $ref: './components/endpoints/logout.yaml'
+
+components:
+  schemas:
+    # Requests
+    LoginRequest:
+      $ref: './components/schemas/requests/login.yaml'
+
+    # Responses
+    TokenResponses:
+      $ref: './components/schemas/responses/token.yaml'
+
+    Error:
+      $ref: './components/schemas/responses/error.yaml'
+
+  responses:
+    200Token:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TokenResponses'
+          examples:
+            Token:
+              $ref: '#/components/examples/Token'
+
+    400BadRequest:
+      description: BAD REQUEST
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            Error:
+              $ref: '#/components/examples/Error'
+    401Unauthorized:
+      description: UNAUTHORIZED
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            Error:
+              $ref: '#/components/examples/Error'
+    '500':
+      description: INTERNAL SERVER ERROR
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            Error:
+              $ref: '#/components/examples/Error'
+
+  examples:
+    Error:
+      $ref: './components/examples/error.yaml'
+
+    Login:
+      $ref: './components/examples/login.yaml'
+
+    Token:
+      $ref: './components/examples/token.yaml'
+
+  securitySchemes:
+    BearerAuth:
+      description: "Authorization: Basic <clientID:clientSecret b64>"
+      type: http
+      scheme: basic
+
+    BasicAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer <token>

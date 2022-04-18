@@ -1,0 +1,29 @@
+post:
+  operationId: "login_shop"
+  tags:
+    - Auth
+  summary: Login shop
+  description: Create a shop's access token from account credentials.
+  security:
+    - BasicAuth: []
+  requestBody:
+    description: User shop request body.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../../openapi.yaml#/components/schemas/LoginRequest'
+        examples:
+          Login:
+            $ref: '../../../openapi.yaml#/components/examples/Login'
+  responses:
+    200:
+      $ref: '../../../openapi.yaml#/components/responses/200Token'
+
+    400:
+      $ref: '../../../openapi.yaml#/components/responses/400BadRequest'
+    401:
+      $ref: '../../../openapi.yaml#/components/responses/401Unauthorized'
+
+    500:
+      $ref: '../../../openapi.yaml#/components/responses/500'
